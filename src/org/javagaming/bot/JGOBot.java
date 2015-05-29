@@ -10,8 +10,8 @@ import org.jibble.pircbot.PircBot;
 public class JGOBot extends PircBot {
 
 	final static String NETWORK = "irc.freenode.net";
-	final static String CHANNEL = "#jgobot";
-	//final static String CHANNEL = "#java-gaming";
+	//final static String CHANNEL = "#jgobot";
+	final static String CHANNEL = "#java-gaming";
 	
 	final static String COMMAND_IDENTIFIER = "::";
 	final static String BOT_NAME = "JGOBot";
@@ -92,11 +92,12 @@ public class JGOBot extends PircBot {
 		if(message.startsWith(COMMAND_IDENTIFIER) && !sender.equalsIgnoreCase(BOT_NAME)) {
 			String[] commandArgs = message.split(" ");
 			commandArgs[0] = commandArgs[0].replaceAll(COMMAND_IDENTIFIER, "");
-			Command command = getCommand(commandArgs[0]);
-			if(command != null)
+			if(!commandArgs[0].equalsIgnoreCase("")){
+				Command command = getCommand(commandArgs[0]);
 				command.execute(sender, commandArgs);
-			else
+			} else {
 				send("Command not recognised.");
+			}
 		}
 		//Send events to listeners if not a command
 		else {
