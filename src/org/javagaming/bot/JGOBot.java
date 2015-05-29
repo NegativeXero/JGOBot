@@ -34,6 +34,7 @@ public class JGOBot extends PircBot {
 		//Set the bot's nickname
 		this.setName(BOT_NAME);
 		registerCommand(new HelpCommand(this));
+		registerCommand(new DanceCommand(this));
 	}
 	
 	private void registerCommand(Command command) {
@@ -46,7 +47,11 @@ public class JGOBot extends PircBot {
 		if(message.startsWith(COMMAND_IDENTIFIER) && !sender.equalsIgnoreCase(BOT_NAME)) {
 			String[] commandArgs = message.split(" ");
 			commandArgs[0] = commandArgs[0].replaceAll(COMMAND_IDENTIFIER, "");
-			getCommand(commandArgs[0]).execute(sender, commandArgs);
+			Command command = getCommand(commandArgs[0]);
+			if(command != null)
+				command.execute(sender, commandArgs);
+			else
+				send("Command not recognised.");
 		}
 	}
 	
