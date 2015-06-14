@@ -8,7 +8,7 @@ public abstract class Command {
 	public boolean hidden = false;
 	JGOBot bot;
 	public Command(JGOBot bot, String commandName) {
-		this(bot, commandName, null);
+		this(bot, commandName, new String[]{});
 	}
 	
 	public Command(JGOBot bot, String commandName, String[] aliases) {
