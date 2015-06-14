@@ -35,6 +35,7 @@ public class JGOBot extends PircBot {
 		this.setName(BOT_NAME);
 		register(new HelpCommand(this));
 		register(new DanceCommand(this));
+		register(new DrunkCoderCommand(this));
 		register(new Greeter(this));
 	}
 
